@@ -9,7 +9,7 @@ npm install
 ```
 then
 ```bash
-npm start
+npm run start
 ```
 
   Base URL [http://localhost:8080](http://localhost:8080)
