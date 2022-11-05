@@ -4,6 +4,8 @@ import { User } from './user.entity';
 
 import { UserDto } from './dto/user.dto';
 import { USER_REPOSITORY } from '../../core/constants';
+import { Order } from '../orders/order.entity';
+import { Product } from '../products/product.entity';
 
 @Injectable()
 export class UsersService {
@@ -21,5 +23,12 @@ export class UsersService {
 
   async findOneById(id: number): Promise<User> {
     return await this.userRepository.findOne<User>({ where: { id } });
+  }
+
+  async getOrderHistory(id: number): Promise<Order[]> {
+    return await Order.findAll<Order>({
+      where: { userId: id },
+      include: [Product],
+    });
   }
 }
